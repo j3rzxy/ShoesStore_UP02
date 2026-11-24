@@ -13,7 +13,7 @@ namespace ShoesStore.Pages
             InitializeComponent();
 
             // Загружаем роли СРАЗУ при открытии страницы, а не при нажатии на кнопку
-            RoleСBox.ItemsSource = Core.Context.Roles_.ToList();
+            RoleComboBox.ItemsSource = Core.Context.Roles_.ToList();
         }
 
         private void Register(object sender, RoutedEventArgs e)
@@ -54,7 +54,7 @@ namespace ShoesStore.Pages
             }
 
             // Проверяем, выбрана ли роль в ComboBox
-            if (RoleСBox.SelectedValue == null)
+            if (RoleComboBox.SelectedValue == null)
             {
                 MessageBox.Show("Выберите роль.");
                 return;
@@ -66,14 +66,14 @@ namespace ShoesStore.Pages
                 return;
             }
 
-            var selectedRole = (Roles_)RoleСBox.SelectedItem;
+            var selectedRole = (Roles_)RoleComboBox.SelectedItem;
 
             var newUser = new Users_
             {
                 FullName = fullname,
                 Login = login,
                 Password = password,
-                ID = selectedRole.ID
+                RoleID = selectedRole.ID
             };
 
             Core.Context.Users_.Add(newUser);
